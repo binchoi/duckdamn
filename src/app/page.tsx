@@ -83,7 +83,7 @@ export default function Home() {
         }}
         onSubmit={(
           data,
-          { completeForm, setIsSubmitting, goToBlock, setSubmissionErr },
+          { completeForm, setIsSubmitting },
         ) => {
           setTimeout(() => {
             setIsSubmitting(false);
