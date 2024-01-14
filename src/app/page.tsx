@@ -82,14 +82,15 @@ export default function Home() {
           ],
         }}
         onSubmit={(
-          data,
-          { completeForm, setIsSubmitting },
+          data: any,
+          { completeForm, setIsSubmitting }: any,
         ) => {
           setTimeout(() => {
             setIsSubmitting(false);
             completeForm();
           }, 500);
         }}
+
       />
     </div>
   );
