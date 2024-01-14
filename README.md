@@ -1,7 +1,11 @@
 ## Getting Started
 
-First, run the development server:
+Install dependencies
+```bash
+pnpm install
+```
 
+Run the development server
 ```bash
 pnpm dev
 ```
