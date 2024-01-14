@@ -87,7 +87,6 @@ export default function Home() {
             completeForm();
           }, 500);
         }}
-
       />
     </div>
   );

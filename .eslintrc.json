@@ -13,6 +13,7 @@
     "prefer-arrow-callback": "off",
     "tailwindcss/no-custom-classname": "off",
     "turbo/no-undeclared-env-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": [
       "error",
       {
