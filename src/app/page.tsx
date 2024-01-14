@@ -38,21 +38,6 @@ export default function Home() {
                 },
               },
             },
-            // {
-            //   name: "date",
-            //   id: "gqr1294c",
-            //   attributes: {
-            //     classnames: "first-block",
-            //     required: true,
-            //     label: "언제 지구에 도착하셨어요, 천사님?",
-            //     format: "MMYYYY",
-            //     separator: "/",
-            //     attachment: {
-            //       type: "image",
-            //       url: "/images/duck.png",
-            //     },
-            //   },
-            // },
             {
               name: "date",
               id: "dob01",
@@ -64,7 +49,7 @@ export default function Home() {
                   type: "image",
                   url: "/images/rizz-dog.png",
                 },
-          },
+              },
             },
             {
               name: "multiple-choice",
