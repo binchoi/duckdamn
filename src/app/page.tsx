@@ -1,51 +1,111 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import { Form } from "@quillforms/renderer-core";
+import "@quillforms/renderer-core/build-style/style.css";
+import { registerCoreBlocks } from "@quillforms/react-renderer-utils";
+
+registerCoreBlocks();
 
 export default function Home() {
-  const [age, setAge] = useState<number>();
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    // 정규 표현식을 사용하여 입력값이 숫자인지 확인
-    if (!/^[0-9]*$/.test(value)) {
-      return;
-    }
-
-    setAge(Number(value));
-  };
-
-  const [calculating, setCalculating] = useState(false);
-
   return (
-    <main className="w-full h-full flex flex-col items-center justify-center gap-8 py-8">
-      {calculating ? (
-        <span className="loading loading-spinner loading-lg"></span>
-      ) : (
-        <>
-          <div className=" w-64 h-72 relative">
-            <Image
-              src="/images/duck.png"
-              className="object-cover rounded-md"
-              fill
-              alt="duck"
-            />
-          </div>
-          <input
-            value={age}
-            onChange={onChange}
-            placeholder="나이"
-            className="input w-full max-w-[270px] text-center placeholder:text-center rounded-full"
-          />
-          <Link
-            className="btn border-none text-white bg-[#17171F] rounded-full font-bold text-2xl px-6"
-            href={`/result/${age}`}
-          >
-            덕담
-          </Link>
-        </>
-      )}
-    </main>
+    <div style={{ width: "100%", height: "100vh" }}>
+      <Form
+        formId="123"
+        formObj={{
+          blocks: [
+            {
+              name: "welcome-screen",
+              id: "jg1401x",
+              attributes: {
+                label: "푸른용의 해 🐉 갑진년을 맞이하여",
+                description: "축복하러 왔어용 🫰",
+                attachment: {
+                  type: "image",
+                  url: "/images/duck.png",
+                },
+              },
+            },
+            {
+              name: "short-text",
+              id: "kd12edg",
+              attributes: {
+                classnames: "first-block",
+                required: true,
+                label: "이름이 어떻게 되시나요?",
+                attachment: {
+                  type: "image",
+                  url: "/images/duck.png",
+                },
+              },
+            },
+            // {
+            //   name: "date",
+            //   id: "gqr1294c",
+            //   attributes: {
+            //     classnames: "first-block",
+            //     required: true,
+            //     label: "언제 지구에 도착하셨어요, 천사님?",
+            //     format: "MMYYYY",
+            //     separator: "/",
+            //     attachment: {
+            //       type: "image",
+            //       url: "/images/duck.png",
+            //     },
+            //   },
+            // },
+            {
+              name: "date",
+              id: "dob01",
+              attributes: {
+                required: true,
+                label: "언제 지구에 도착하셨어요, 천사님?",
+                description: "예: 1990-01-01",
+                attachment: {
+                  type: "image",
+                  url: "/images/rizz-dog.png",
+                },
+          },
+            },
+            {
+              name: "multiple-choice",
+              id: "gqr1294c",
+              attributes: {
+                required: true,
+                multiple: true,
+                verticalAlign: false,
+                label: "좋아하는 음식은?",
+                choices: [
+                  {
+                    label: "짜장면",
+                    value: "짜장면",
+                  },
+                  {
+                    label: "짬뽕",
+                    value: "짬뽕",
+                  },
+                  {
+                    label: "떡볶이",
+                    value: "떡볶이",
+                  },
+                  {
+                    label: "데인's 🍑",
+                    value: "데인's 🍑",
+                  },
+                ],
+              },
+            },
+          ],
+        }}
+        onSubmit={(
+          data,
+          { completeForm, setIsSubmitting, goToBlock, setSubmissionErr },
+        ) => {
+          setTimeout(() => {
+            setIsSubmitting(false);
+            completeForm();
+          }, 500);
+        }}
+      />
+    </div>
   );
 }
