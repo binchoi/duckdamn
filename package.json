@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@quillforms/react-renderer-utils": "^5.9.1",
+    "@quillforms/renderer-core": "^5.7.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
