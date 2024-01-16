@@ -3,19 +3,21 @@
 import { Form } from "@quillforms/renderer-core";
 import "@quillforms/renderer-core/build-style/style.css";
 import { registerCoreBlocks } from "@quillforms/react-renderer-utils";
+import { useRouter } from "next/navigation";
 
 registerCoreBlocks();
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <div style={{ width: "100%", height: "100vh" }}>
+    <div className="h-full w-full">
       <Form
-        formId="123"
+        formId="1"
         formObj={{
           blocks: [
             {
               name: "welcome-screen",
-              id: "jg1401x",
+              id: "welcome",
               attributes: {
                 label: "푸른용의 해 🐉 갑진년을 맞이하여",
                 description: "축복하러 왔어용 🫰",
@@ -27,7 +29,7 @@ export default function Home() {
             },
             {
               name: "short-text",
-              id: "kd12edg",
+              id: "name",
               attributes: {
                 classnames: "first-block",
                 required: true,
@@ -40,11 +42,13 @@ export default function Home() {
             },
             {
               name: "date",
-              id: "dob01",
+              id: "date",
               attributes: {
                 required: true,
                 label: "언제 지구에 도착하셨어요, 천사님?",
-                description: "예: 1990-01-01",
+                format: "YYYYMMDD",
+                separator: "-",
+                description: "예: 1999-11-15",
                 attachment: {
                   type: "image",
                   url: "/images/rizz-dog.png",
@@ -53,7 +57,7 @@ export default function Home() {
             },
             {
               name: "multiple-choice",
-              id: "gqr1294c",
+              id: "food",
               attributes: {
                 required: true,
                 multiple: true,
@@ -72,20 +76,23 @@ export default function Home() {
                     label: "떡볶이",
                     value: "떡볶이",
                   },
-                  {
-                    label: "데인's 🍑",
-                    value: "데인's 🍑",
-                  },
                 ],
               },
             },
           ],
         }}
-        onSubmit={(data: any, { completeForm, setIsSubmitting }: any) => {
+        onSubmit={(data: any) => {
           setTimeout(() => {
-            setIsSubmitting(false);
-            completeForm();
-          }, 500);
+            // 만나이 계산
+            const now = new Date();
+            const birth = new Date(data.answers.date.value);
+            let age = now.getFullYear() - birth.getFullYear();
+            const m = now.getMonth() - birth.getMonth();
+            if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) {
+              age--;
+            }
+            router.push(`/result/${age}`);
+          }, 2000);
         }}
       />
     </div>
